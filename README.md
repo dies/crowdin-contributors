@@ -22,6 +22,7 @@ $ crowdin-contributors --help
 ```
 <!-- usagestop -->
 # Flags
+```
 $ crowdin-contributors -h
 USAGE
   $ crowdin-contributors
@@ -46,6 +47,7 @@ OPTIONS
 
 DESCRIPTION
   Generate the list of Crowdin contributors
+```
 <!-- flags -->
 
 <!-- commandsstop -->
