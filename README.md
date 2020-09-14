@@ -18,35 +18,34 @@ $ crowdin-contributors
 Downloading report...... ⢿
 
 $ crowdin-contributors --help
+...
+```
+<!-- usagestop -->
+# Flags
+$ crowdin-contributors -h
 USAGE
   $ crowdin-contributors
 
 OPTIONS
   -c, --contributorsPerLine=contributorsPerLine          [default: 7]
-...
-```
-<!-- usagestop -->
-# Flags
-  -c, --contributorsPerLine=contributorsPerLine          [default: 7]
   -f, --file=file                                        [default: README.md] File name to write results to
-
-  -f, --placeholder=placeholder                          [default: <!-- CROWDIN-TRANSLATORS -->] Placeholder to look for and replace 
-                                                         in the -f
-
+  -f, --placeholderEnd=placeholderEnd                    [default: <!-- CROWDIN-TRANSLATORS-END -->] Placeholder end tag -f
+  -f, --placeholderStart=placeholderStart                [default: <!-- CROWDIN-TRANSLATORS-START -->] Placeholder start tag -f
   -h, --help                                             show CLI help
-
   -m, --maxContributors=maxContributors                  [default: 30] Only -m contributors will be shown
-
   -m, --mimimumWordsContributed=mimimumWordsContributed  Minimum words contributed (both translated and approved)
 
-  -o, --organization=organization                        Crowdin Organization (for Crowdin Enterprise only, leave empty for 
-                                                         crowdin.com). CLI will check CROWDIN_ORGANIZATION environment variable if not set
+  -o, --organization=organization                        Crowdin Organization (for Crowdin Enterprise only, leave empty for crowdin.com). CLI will check 
+                                                         CROWDIN_ORGANIZATION environment variable if not set
 
   -p, --project=project                                  Crowdin project ID (number). CLI will check CROWDIN_PROJECT environment variable if not set
 
   -t, --token=token                                      Crowdin Token. CLI will check CROWDIN_TOKEN environment variable if not set
 
   -v, --version                                          show CLI version
+
+DESCRIPTION
+  Generate the list of Crowdin contributors
 <!-- flags -->
 
 <!-- commandsstop -->
