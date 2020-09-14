@@ -1,35 +1,53 @@
-@oclif/example-single-js
+@awesome-crowdin/contributors
 ========================
 
-example single-command CLI built with dxcli
+A CLI for automating the maintenance of your contributors table ✨
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/@oclif/example-single-js.svg)](https://npmjs.org/package/@oclif/example-single-js)
-[![CircleCI](https://circleci.com/gh/oclif/example-single-js/tree/master.svg?style=shield)](https://circleci.com/gh/oclif/example-single-js/tree/master)
-[![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/oclif/example-single-js?branch=master&svg=true)](https://ci.appveyor.com/project/oclif/example-single-js/branch/master)
-[![Codecov](https://codecov.io/gh/oclif/example-single-js/branch/master/graph/badge.svg)](https://codecov.io/gh/oclif/example-single-js)
-[![Downloads/week](https://img.shields.io/npm/dw/@oclif/example-single-js.svg)](https://npmjs.org/package/@oclif/example-single-js)
-[![License](https://img.shields.io/npm/l/@oclif/example-single-js.svg)](https://github.com/oclif/example-single-js/blob/master/package.json)
+Automate acknowledging translators to your open source projects
 
 <!-- toc -->
 * [Usage](#usage)
-* [Commands](#commands)
+* [Flags](#flags)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @oclif/example-single-js
-$ example-single-js COMMAND
-running command...
-$ example-single-js (-v|--version|version)
-@oclif/example-single-js/1.10.6 linux-x64 node-v14.2.0
-$ example-single-js --help [COMMAND]
+$ npm install -g @awesome-crowdin/contributors
+
+$ crowdin-contributors
+Downloading report...... ⢿
+
+$ crowdin-contributors --help
+crowdin-contributors --help
 USAGE
-  $ example-single-js COMMAND
+  $ crowdin-contributors
+
+OPTIONS
+  -c, --contributorsPerLine=contributorsPerLine          [default: 7]
 ...
 ```
 <!-- usagestop -->
-# Commands
-<!-- commands -->
+# Flags
+  -c, --contributorsPerLine=contributorsPerLine          [default: 7]
+  -f, --file=file                                        [default: README.md] File name to write results to
+
+  -f, --placeholder=placeholder                          [default: <!-- CROWDIN-TRANSLATORS -->] Placeholder to look for and replace 
+                                                         in the -f
+
+  -h, --help                                             show CLI help
+
+  -m, --maxContributors=maxContributors                  [default: 30] Only -m contributors will be shown
+
+  -m, --mimimumWordsContributed=mimimumWordsContributed  Minimum words contributed (both translated and approved)
+
+  -o, --organization=organization                        Crowdin Organization (for Crowdin Enterprise only, leave empty for 
+                                                         crowdin.com)
+
+  -p, --project=project                                  Crowdin project ID (number)
+
+  -t, --token=token                                      Crowdin Token
+
+  -v, --version                                          show CLI version
+<!-- flags -->
 
 <!-- commandsstop -->

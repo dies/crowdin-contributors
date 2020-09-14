@@ -170,8 +170,7 @@ async function renderReport(report, config) {
   fs.writeFileSync("contributors.html", html);
 }
 
-OclifCrowdinContributorsCommand.description = `Describe the command here
-...
+OclifCrowdinContributorsCommand.description = `
 Generate the list of Crowdin contributors
 `
 

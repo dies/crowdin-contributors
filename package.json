@@ -30,19 +30,14 @@
         "/bin",
         "/src"
     ],
-    "homepage": "https://github.com/oclif/example-single-js",
+    "homepage": "https://github.com/dies/crowdin-contributors",
     "keywords": [
         "crowdin"
     ],
     "license": "MIT",
     "main": "src/index.js",
     "oclif": {
-        "bin": "example-single-js"
+        "bin": "crowdin-contributors"
     },
-    "repository": "oclif/example-single-js",
-    "scripts": {
-        "posttest": "eslint .",
-        "prepack": "oclif-dev readme",
-        "version": "oclif-dev readme && git add README.md"
-    }
+    "repository": "dies/crowdin-contributors"
 }
