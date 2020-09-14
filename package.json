@@ -1,0 +1,48 @@
+{
+    "name": "@awesome-crowdin/contributors",
+    "description": "contributors crowdin cli",
+    "version": "0.0.1",
+    "author": "awesome-crowdin.com",
+    "bin": {
+        "crowdin-contributors": "./bin/run"
+    },
+    "dependencies": {
+        "@crowdin/crowdin-api-client": "^1.8.16",
+        "@oclif/command": "^1",
+        "@oclif/config": "^1",
+        "@oclif/plugin-help": "^3",
+        "axios": "^0.20.0",
+        "cli-ux": "^5.5.0"
+    },
+    "devDependencies": {
+        "@oclif/dev-cli": "^1",
+        "@oclif/test": "^1",
+        "chai": "^4",
+        "eslint": "^5.13",
+        "eslint-config-oclif": "^3.1",
+        "mocha": "^8.1.3",
+        "nyc": "^14"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "files": [
+        "/bin",
+        "/src"
+    ],
+    "homepage": "https://github.com/oclif/example-single-js",
+    "keywords": [
+        "crowdin"
+    ],
+    "license": "MIT",
+    "main": "src/index.js",
+    "oclif": {
+        "bin": "example-single-js"
+    },
+    "repository": "oclif/example-single-js",
+    "scripts": {
+        "posttest": "eslint .",
+        "prepack": "oclif-dev readme",
+        "version": "oclif-dev readme && git add README.md"
+    }
+}
