@@ -8,7 +8,7 @@ class OclifCrowdinContributorsCommand extends Command {
   async run() {
     const {flags} = this.parse(OclifCrowdinContributorsCommand)
 
-    flags.project = flags.project || process.env.CROWDIN_PROJECT || await cli.prompt('What is your Crowdin project ID? (numeric value)');
+    flags.project = flags.project || process.env.CROWDIN_PROJECT || await cli.prompt('What is the Crowdin project ID? (numeric value)');
     flags.organization = flags.organization || process.env.CROWDIN_ORGANIZATION || await cli.prompt('What is your Crowdin organization name? (type - if you\'re crowdin.com user)');
     flags.token = flags.token || process.env.CROWDIN_TOKEN || await cli.prompt('Crowdin Auth Token? (not the API key)', {type: 'hide'});
 
@@ -115,8 +115,6 @@ async function prepareData(report, config) {
   bar.start(config.maxContributors, 0);
 
   for (var i in result) {
-      // console.log("Loading user info: ", result[i].username);
-
       try {
           var crowdinMember = await usersApi.getMemberInfo(config.project, result[i].id);
           result[i].picture = crowdinMember.data.avatarUrl;
@@ -165,9 +163,16 @@ async function renderReport(report, config) {
   }
   html += "</table>";
 
-  console.log("Writing result");
+  console.log("Writing result to ", config.file);
 
-  fs.writeFileSync("contributors.html", html);
+  var fileContents = fs.readFileSync(config.file);
+
+  var sliceFrom = fileContents.indexOf(config.placeholderStart) + config.placeholderStart.length;
+  var sliceTo = fileContents.indexOf(config.placeholderEnd);
+
+  var fileContents = fileContents.slice(0, sliceFrom) + "\r\n" + html + "\r\n" + fileContents.slice(sliceTo);
+
+  fs.writeFileSync(config.file, fileContents);
 }
 
 OclifCrowdinContributorsCommand.description = `
@@ -177,12 +182,13 @@ Generate the list of Crowdin contributors
 OclifCrowdinContributorsCommand.flags = {
   version: flags.version({char: 'v'}),
   help: flags.help({char: 'h'}),
-  project: flags.integer({char: 'p', description: 'Crowdin project ID (number)'}),
-  token: flags.string({char: 't', description: 'Crowdin Token'}),
-  organization: flags.string({char: 'o', description: 'Crowdin Organization (for Crowdin Enterprise only, leave empty for crowdin.com)'}),
+  project: flags.integer({char: 'p', description: 'Crowdin project ID (number). CLI will check CROWDIN_PROJECT environment variable if not set'}),
+  token: flags.string({char: 't', description: 'Crowdin Token. CLI will check CROWDIN_TOKEN environment variable if not set'}),
+  organization: flags.string({char: 'o', description: 'Crowdin Organization (for Crowdin Enterprise only, leave empty for crowdin.com). CLI will check CROWDIN_ORGANIZATION environment variable if not set'}),
   maxContributors: flags.string({char: 'm', description: 'Only -m contributors will be shown', default: 30}),
   file: flags.string({char: 'f', description: 'File name to write results to', default: "README.md"}),
-  placeholder: flags.string({char: 'f', description: 'Placeholder to look for and replace in the -f', default: "<!-- CROWDIN-TRANSLATORS -->"}),
+  placeholderStart: flags.string({char: 'f', description: 'Placeholder start tag -f', default: "<!-- CROWDIN-TRANSLATORS-START -->"}),
+  placeholderEnd: flags.string({char: 'f', description: 'Placeholder end tag -f', default: "<!-- CROWDIN-TRANSLATORS-END -->"}),
   contributorsPerLine: flags.integer({char: 'c', default: 7}),
   mimimumWordsContributed: flags.integer({char: 'mwc', description: 'Minimum words contributed (both translated and approved)', default: null}),
 }

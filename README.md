@@ -41,11 +41,11 @@ OPTIONS
   -m, --mimimumWordsContributed=mimimumWordsContributed  Minimum words contributed (both translated and approved)
 
   -o, --organization=organization                        Crowdin Organization (for Crowdin Enterprise only, leave empty for 
-                                                         crowdin.com)
+                                                         crowdin.com). CLI will check CROWDIN_ORGANIZATION environment variable if not set
 
-  -p, --project=project                                  Crowdin project ID (number)
+  -p, --project=project                                  Crowdin project ID (number). CLI will check CROWDIN_PROJECT environment variable if not set
 
-  -t, --token=token                                      Crowdin Token
+  -t, --token=token                                      Crowdin Token. CLI will check CROWDIN_TOKEN environment variable if not set
 
   -v, --version                                          show CLI version
 <!-- flags -->
