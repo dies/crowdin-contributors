@@ -17,8 +17,6 @@ $ npm install -g @awesome-crowdin/crowdin-contributors
 $ crowdin-contributors
 Downloading report...... ⢿
 
-$ crowdin-contributors --help
-...
 ```
 <!-- usagestop -->
 # Flags
