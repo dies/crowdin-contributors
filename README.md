@@ -18,7 +18,6 @@ $ crowdin-contributors
 Downloading report...... ⢿
 
 $ crowdin-contributors --help
-crowdin-contributors --help
 USAGE
   $ crowdin-contributors
 
