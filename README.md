@@ -1,4 +1,4 @@
-@awesome-crowdin/contributors
+@awesome-crowdin/crowdin-contributors
 ========================
 
 A CLI for automating the maintenance of your contributors table ✨
@@ -12,7 +12,7 @@ Automate acknowledging translators to your open source projects
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @awesome-crowdin/contributors
+$ npm install -g @awesome-crowdin/crowdin-contributors
 
 $ crowdin-contributors
 Downloading report...... ⢿

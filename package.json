@@ -1,5 +1,5 @@
 {
-    "name": "@awesome-crowdin/contributors",
+    "name": "@awesome-crowdin/crowdin-contributors",
     "description": "contributors crowdin cli",
     "version": "0.0.1",
     "author": "awesome-crowdin.com",
@@ -39,5 +39,14 @@
     "oclif": {
         "bin": "crowdin-contributors"
     },
-    "repository": "dies/crowdin-contributors"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dies/crowdin-contributors.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dies/crowdin-contributors/issues"
+    },
+    "scripts": {
+        "test": "mocha"
+    }
 }
