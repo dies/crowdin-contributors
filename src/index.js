@@ -16,6 +16,11 @@ class OclifCrowdinContributorsCommand extends Command {
       flags.organization = "";
     }
 
+    if (!fs.existsSync(flags.file)) {
+        console.log("File " + flags.file + " does not exist");
+        return;
+    }
+
     getReport(flags);
   }
 }
@@ -133,7 +138,8 @@ async function prepareData(report, config) {
 
 async function renderReport(report, config) {
   var result = [],
-      html = "";
+      html = "",
+      tda = "";
 
   for (let i = 0; i < report.length; i += config.contributorsPerLine) {
       result.push(report.slice(i, i + config.contributorsPerLine));
@@ -144,11 +150,17 @@ async function renderReport(report, config) {
   for (var i in result) {
       html += "<tr>";
       for (var j in result[i]) {
+          if(!config.organization) {
+            tda = `<a href="https://crowdin.com/profile/` + result[i][j].username + `">
+                    <img style="width: 58px" src="` + result[i][j].picture + `"/>
+                   </a>`;
+          } else {
+            tda = `<img style="width: 58px" src="` + result[i][j].picture + `"/>`;
+          }
+
           html += `
               <td style="text-align:center; vertical-align: top;">
-                  <a href="https://crowdin.com/profile/` + result[i][j].username + `">
-                      <img style="width: 58px" src="` + result[i][j].picture + `"/>
-                  </a>
+                  ` + tda + `
                   <br />
                   <sub>
                       <b>` + result[i][j].name + `</b>
@@ -167,10 +179,15 @@ async function renderReport(report, config) {
 
   var fileContents = fs.readFileSync(config.file);
 
+  if(fileContents.indexOf(config.placeholderStart) === -1 || fileContents.indexOf(config.placeholderEnd) === -1) {
+    console.log("Unable to locate start or end tag in " + config.file);
+    return;
+  }
+
   var sliceFrom = fileContents.indexOf(config.placeholderStart) + config.placeholderStart.length;
   var sliceTo = fileContents.indexOf(config.placeholderEnd);
 
-  var fileContents = fileContents.slice(0, sliceFrom) + "\r\n" + html + "\r\n" + fileContents.slice(sliceTo);
+  fileContents = fileContents.slice(0, sliceFrom) + "\r\n" + html + "\r\n" + fileContents.slice(sliceTo);
 
   fs.writeFileSync(config.file, fileContents);
 }
