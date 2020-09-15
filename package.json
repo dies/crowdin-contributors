@@ -1,7 +1,7 @@
 {
     "name": "@awesome-crowdin/crowdin-contributors",
     "description": "contributors crowdin cli",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": "awesome-crowdin.com",
     "bin": {
         "crowdin-contributors": "./bin/run"
